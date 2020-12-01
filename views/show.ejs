@@ -1,0 +1,37 @@
+<%- include("./partials/header.ejs") %>
+
+<div class="container">
+	<div class="col-md-8">
+				<div class="card">
+					 <img class="image-responsive" src="<%= image.url %>" class="card-img-top" alt="<%= image.title %>">
+					 <div class="card-body caption-full">
+					
+						<h4 class="card-title"><a><%= image.title %></a></h4>
+						<p>
+							<%= image.desc %>
+						 </p>
+						 <div class="card-footer text-muted">
+							<p>
+								
+							 </p>
+						 </div>
+						 <%if(currentUser && image.author.equals(currentUser._id)){%><!--currentUser is coming grom app.js, it is available in all templates-->
+							<a class="btn btn-warning" href="/<%=image._id%>/edit">Edit</a>
+							<form id="delete-form" style="display:inline" action="/<%=image._id%>?_method=DELETE" method="POST">
+								<button class="btn btn-danger">
+									Delete
+								</button>
+							</form>						 
+						 <%}%>
+						 
+					 </div>
+
+				</div>
+</div>
+
+
+
+
+
+
+<%- include("./partials/footer.ejs") %>

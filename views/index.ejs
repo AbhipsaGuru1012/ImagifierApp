@@ -1,0 +1,49 @@
+<%- include("./partials/header") %>
+
+
+<div class="jumbotron" style="background-image:url('https://images.unsplash.com/photo-1519750783826-e2420f4d687f?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTV8fGFlc3RoZXRpYyUyMGJhY2tncm91bmR8ZW58MHx8MHw%3D&auto=format&fit=crop&w=500&q=60');
+						background-size:cover;
+						background-position:center;
+						background-repeat:no-repeat;
+						height:75%;
+						width:100%;">
+	<div class="content">
+		<h2>
+			THE IMAGIFIER APP
+		</h2>
+		<br>
+		<p>
+			The imagifier app is made specially for uploading the photos taken by you and you 
+			<br>
+			can also use any of the images uploaded by others
+		</p>
+	</div>
+	
+</div>
+<div class="container">
+	
+		<% images.forEach(function(image){ %>
+			<div class="card mb-3">
+				<div class="row">
+			  <img src="<%=image.url%>" class="card-img-top col-md-4" alt="...">
+	
+				<div class="card-body col-md-8 mb-3">
+				<h5 class="card-title"><%=image.title%></h5>
+				<p class="card-text"><%=image.desc%></p>
+				
+				<%if(currentUser){%>
+					<a href="/<%=image._id%>/edit" class="btn btn-warning">Edit</a>
+					<form id="delete-form" style="display:inline" action="/<%=image._id%>?_method=DELETE" method="POST">
+						<input type="submit" id="delete-form" class="btn btn-danger" value="Delete">
+					</form>
+				<%}%>
+				</div>
+				
+			</div>
+		</div>
+	<%})%>
+</div>
+
+
+
+<%- include("./partials/footer") %>
